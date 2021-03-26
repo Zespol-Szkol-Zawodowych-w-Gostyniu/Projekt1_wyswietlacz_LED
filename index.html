@@ -1,0 +1,102 @@
+<!-- 
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body button {
+            display: block;
+            margin: 10px auto;
+        }
+
+        .digit1,
+        .digit2 {
+            width: 200px;
+            background-color: white;
+            margin-right: 20px;
+            display: flex;
+            flex-flow: row wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            justify-content: space-around;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            margin: 5px;
+            float: left;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            border: 2px solid black;
+        }
+
+        .on {
+            background-color: red;
+
+            color: black;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="digit1"> </div>
+    <div style="width:10px; background-color: white; border: none;"></div>
+    <div class="digit2"> </div>
+    <script>
+        let cyfra = parseInt(prompt("Podaj cyfrę:"));
+        let n = cyfra;
+        let numbertab = [];//23 ->[2,3]
+        while (n > 0) {
+            numbertab.push(n % 10);
+            n = Math.floor(n / 10);
+        }
+        let tab = [
+            [1, 2, 3, 4, 6, 7, 9, 10, 12, 13, 14, 15], //0
+            [3, 6, 9, 12, 15], //1
+            [1, 2, 3, 6, 7, 8, 9, 10, 13, 14, 15], //2
+            [1, 2, 3, 6, 8, 9, 12, 13, 14, 15], //3
+            [1, 4, 7, 8, 9, 11, 14], //4
+            [1, 2, 3, 4, 7, 8, 9, 12, 13, 14, 15], //5
+            [1, 2, 3, 4, 7, 8, 9, 10, 12, 13, 14, 15], //6
+            [1, 2, 3, 6, 9, 12, 15], //7
+            [1, 2, 3, 4, 6, 7, 8, 9, 10, 12, 13, 14, 15], //8
+            [1, 2, 3, 4, 6, 7, 8, 9, 12, 13, 14, 15] //9
+        ]
+        let number = 1;
+        const addElement = function (a, dig) {
+            const div = document.createElement('div');
+            div.textContent = number;
+            if (tab[a].includes(number))
+                div.classList.add("on");
+            let container = document.getElementsByClassName(dig);
+            container[0].appendChild(div);
+            number++;
+
+        }
+
+        for (let i = 1; i <= 3; i++)
+            for (let j = 1; j <= 5; j++)
+                addElement(numbertab[1], "digit1");
+        number = 1;
+        for (let i = 1; i <= 3; i++)
+            for (let j = 1; j <= 5; j++)
+                addElement(numbertab[0], "digit2");
+    </script>
+
+</body>
+
+</html>
