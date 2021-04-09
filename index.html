@@ -17,7 +17,8 @@
         }
 
         .digit0,
-        .digit1 {
+        .digit1,
+        .digit2 {
             width: 200px;
             background-color: white;
             margin-right: 20px;
@@ -53,12 +54,20 @@
 </head>
 
 <body>
-    <div class="digit0"> </div>
+    <!-- <div class="digit0"> </div>
     <div style="width:10px; background-color: white; border: none;"></div>
-    <div class="digit1"> </div>
+    <div class="digit1"> </div> -->
     <script>
-        const createDigit = function () {
-
+        const createDigit = function (namberDigit) {
+            let div = document.createElement("div");
+            let container = document.getElementsByTagName("body");
+            div.classList.add("digit" + namberDigit);
+            container[0].appendChild(div);
+            div = document.createElement("div");
+            div.style.width = "10px";
+            div.style.backgroundColor = "white";
+            div.style.border = "none";
+            container[0].appendChild(div);
         }
 
         let cyfra = parseInt(prompt("Podaj cyfrę:"));
@@ -93,7 +102,9 @@
             number++;
 
         }
+
         for (let x = 0; x < k; x++) {
+            createDigit(x);
             for (let i = 1; i <= 3; i++)
                 for (let j = 1; j <= 5; j++)
                     addElement(numbertab[x], "digit" + x);
