@@ -16,8 +16,8 @@
             margin: 10px auto;
         }
 
-        .digit1,
-        .digit2 {
+        .digit0,
+        .digit1 {
             width: 200px;
             background-color: white;
             margin-right: 20px;
@@ -53,16 +53,22 @@
 </head>
 
 <body>
-    <div class="digit1"> </div>
+    <div class="digit0"> </div>
     <div style="width:10px; background-color: white; border: none;"></div>
-    <div class="digit2"> </div>
+    <div class="digit1"> </div>
     <script>
+        const createDigit = function () {
+
+        }
+
         let cyfra = parseInt(prompt("Podaj cyfrę:"));
         let n = cyfra;
-        let numbertab = [];//23 ->[2,3]
+        let numbertab = []; //23 ->[2,3]
+        let k = 0; //bedzie zliczać ilu cyfrowa jest podana liczba
         while (n > 0) {
-            numbertab.push(n % 10);
+            numbertab.unshift(n % 10); //1234: 4->[4], 3->[3,4], ...,1->[1,2,3,4]
             n = Math.floor(n / 10);
+            k++;
         }
         let tab = [
             [1, 2, 3, 4, 6, 7, 9, 10, 12, 13, 14, 15], //0
@@ -87,14 +93,15 @@
             number++;
 
         }
-
-        for (let i = 1; i <= 3; i++)
-            for (let j = 1; j <= 5; j++)
-                addElement(numbertab[1], "digit1");
-        number = 1;
-        for (let i = 1; i <= 3; i++)
-            for (let j = 1; j <= 5; j++)
-                addElement(numbertab[0], "digit2");
+        for (let x = 0; x < k; x++) {
+            for (let i = 1; i <= 3; i++)
+                for (let j = 1; j <= 5; j++)
+                    addElement(numbertab[x], "digit" + x);
+            number = 1;
+        }
+        // for (let i = 1; i <= 3; i++)
+        //     for (let j = 1; j <= 5; j++)
+        //         addElement(numbertab[0], "digit2");
     </script>
 
 </body>
